@@ -17,7 +17,7 @@ export default function signup() {
             username: usernameRef.current?.value,
             password: passwordRef.current?.value,
         })
-        router.push('signin');
+        router.push('api/auth/signin');
     }
     return (
         <div className="h-screen w-screen flex justify-center items-center">

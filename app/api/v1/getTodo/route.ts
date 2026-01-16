@@ -1,12 +1,15 @@
 import prisma from "@/app/lib/db"
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server"
+import { authOptions } from "../../auth/[...nextauth]/route";
 
-export async function POST(req: NextRequest) {
-    const data = await req.json();
+export async function GET(req: NextRequest) {
+    const session = getServerSession(authOptions);
+    console.log("hi")
 
     const response = await prisma.todos.findMany({
         where: {
-            userId: parseInt(data.userId)
+            userId: session.user.id
         },
     })
 
