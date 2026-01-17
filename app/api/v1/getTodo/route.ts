@@ -4,19 +4,18 @@ import { NextRequest, NextResponse } from "next/server"
 import { authOptions } from "../../auth/[...nextauth]/route";
 
 export async function GET(req: NextRequest) {
-    const session = getServerSession(authOptions);
+    const session = await getServerSession(authOptions);
     console.log("hi")
 
     const response = await prisma.todos.findMany({
         where: {
-            userId: session.user.id
+            userId: parseInt(session?.user?.id)
         },
     })
 
     if(response) {
         return (
             NextResponse.json({
-                msg: "todo created",
                 todos: response
             })
         )

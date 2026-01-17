@@ -13,7 +13,6 @@ export default async function Home() {
       <div className="flex justify-center items-center text-xl gap-8">
         <Link href={'/signup'}>SignUp</Link>
         <Link href={'/api/auth/signin'}>SignIn</Link>
-        {JSON.stringify(session)}
       </div>
       
     </div>

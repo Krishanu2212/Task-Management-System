@@ -1,9 +1,10 @@
 "use client"
 import { useRef } from "react";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 
-export default function SignIn() {
+export default function createTodo() {
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
 
@@ -11,10 +12,10 @@ export default function SignIn() {
         const response = await axios.post("http://localhost:3000/api/v1/createTodo", {
             title: titleRef.current?.value,
             description: descriptionRef.current?.value,
-            userId: localStorage.getItem('id')
         });
         if(response.status === 200) {
             alert(response.data.msg);
+            redirect('/todos');
 
         }
     }
